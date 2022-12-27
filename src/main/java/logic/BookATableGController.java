@@ -11,26 +11,26 @@ import java.util.ResourceBundle;
 
 public class BookATableGController implements Initializable{
     @FXML
-    private Label timeSlot_Label;
+    private Label timeSlotLabel;
 
     @FXML
-    private ChoiceBox<String> timeSlot_Entry;
+    private ChoiceBox<String> timeSlotEntry;
 
     @FXML
     private final String[] timeSlot = {"LUNCH", "DINNER"};
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
-        timeSlot_Entry.getItems().addAll(timeSlot);
-        timeSlot_Entry.setOnAction(this::getFood);
+        timeSlotEntry.getItems().addAll(timeSlot);
+        timeSlotEntry.setOnAction(this::getFood);
     }
 
     public void getFood(ActionEvent event){
-        String myTimeSlot = timeSlot_Entry.getValue();
-        timeSlot_Label.setText("timeSlot");
+        timeSlotLabel.setText("timeSlot");
     }
 
     public void confirmBooking(ActionEvent actionEvent) {
+        //DO_SOMETHING
     }
 
 }
