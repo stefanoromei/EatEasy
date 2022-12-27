@@ -1,4 +1,4 @@
-package logic.view.GIGraphicController;
+package logic.view.giGraphicController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
