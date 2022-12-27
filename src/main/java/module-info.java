@@ -5,6 +5,6 @@ module logic.eateasy {
 
     opens logic to javafx.fxml;
     exports logic;
-    exports logic.view.giGraphicController;
-    opens logic.view.giGraphicController to javafx.fxml;
+    exports logic.view.gi;
+    opens logic.view.gi to javafx.fxml;
 }

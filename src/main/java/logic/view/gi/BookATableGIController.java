@@ -1,4 +1,4 @@
-package logic.view.giGraphicController;
+package logic.view.gi;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BookATableGController implements Initializable{
+public class BookATableGIController implements Initializable{
     @FXML
     private Label timeSlotLabel;
 
