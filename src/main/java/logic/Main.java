@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("BookATableView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("BookATableView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Booking");
         stage.setScene(scene);
