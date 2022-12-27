@@ -9,8 +9,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BookATableGIController implements Initializable{
-    @FXML
-    private Label timeSlotLabel;
 
     @FXML
     private ChoiceBox<String> timeSlotEntry;
@@ -21,11 +19,6 @@ public class BookATableGIController implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
         timeSlotEntry.getItems().addAll(timeSlot);
-        timeSlotEntry.setOnAction(this::getFood);
-    }
-
-    public void getFood(ActionEvent event){
-        timeSlotLabel.setText("timeSlot");
     }
 
     public void confirmBooking(ActionEvent actionEvent) {
