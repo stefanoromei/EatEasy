@@ -3,7 +3,6 @@ package logic.model.entity;
 import logic.enumeration.TimeSlot;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class BookingInfo {
 

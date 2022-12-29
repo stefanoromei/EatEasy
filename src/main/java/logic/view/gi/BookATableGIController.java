@@ -34,15 +34,13 @@ public class BookATableGIController implements Initializable{
 
     public void confirmBooking(ActionEvent actionEvent) {
 
-        BookATableControl booking = new BookATableControl();
+        //BookATableControl booking = new BookATableControl();
         BookingInfoBean bookingInfoBean = new BookingInfoBean();
 
         bookingInfoBean.setName(nameEntry.getText());
         bookingInfoBean.setNumberOfClients(numberOfClientsEntry.getText());
         bookingInfoBean.setDate(dateEntry.getValue());
         bookingInfoBean.setTimeSlot(timeSlotEntry.getValue());
-
-
         //booking.checkForBooking(bookingInfo);
     }
 
