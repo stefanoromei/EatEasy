@@ -1,25 +1,22 @@
-package logic.model.entity;
-
-import logic.enumeration.TimeSlot;
+package logic.bean;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class BookingInfo {
+public class BookingInfoBean {
 
-    private int numberOfClients;
+    private String numberOfClients;
 
     private LocalDate date;
 
-    private TimeSlot timeSlot;
+    private String timeSlot;
 
     private String name;
 
-    public int getNumberOfClients() {
+    public String getNumberOfClients() {
         return numberOfClients;
     }
 
-    public void setNumberOfClients(int numberOfClients) {
+    public void setNumberOfClients(String numberOfClients) {
         this.numberOfClients = numberOfClients;
     }
 
@@ -31,11 +28,11 @@ public class BookingInfo {
         this.date = date;
     }
 
-    public TimeSlot getTimeSlot() {
+    public String getTimeSlot() {
         return timeSlot;
     }
 
-    public void setTimeSlot(TimeSlot timeSlot) {
+    public void setTimeSlot(String timeSlot) {
         this.timeSlot = timeSlot;
     }
 

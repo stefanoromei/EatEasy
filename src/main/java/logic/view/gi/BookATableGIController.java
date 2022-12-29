@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import logic.bean.BookingInfoBean;
+import logic.control.BookATableControl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +16,15 @@ public class BookATableGIController implements Initializable{
     private ChoiceBox<String> timeSlotEntry;
 
     @FXML
+    private DatePicker dateEntry;
+
+    @FXML
+    private TextField numberOfClientsEntry;
+
+    @FXML
+    private TextField nameEntry;
+
+    @FXML
     private final String[] timeSlot = {"LUNCH", "DINNER"};
 
     @Override
@@ -22,7 +33,17 @@ public class BookATableGIController implements Initializable{
     }
 
     public void confirmBooking(ActionEvent actionEvent) {
-        //DO_SOMETHING
+
+        BookATableControl booking = new BookATableControl();
+        BookingInfoBean bookingInfoBean = new BookingInfoBean();
+
+        bookingInfoBean.setName(nameEntry.getText());
+        bookingInfoBean.setNumberOfClients(numberOfClientsEntry.getText());
+        bookingInfoBean.setDate(dateEntry.getValue());
+        bookingInfoBean.setTimeSlot(timeSlotEntry.getValue());
+
+
+        //booking.checkForBooking(bookingInfo);
     }
 
 }
