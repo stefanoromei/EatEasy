@@ -1,5 +1,10 @@
 package logic.bean;
 
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import logic.model.entity.BookingInfo;
+
 import java.time.LocalDate;
 
 public class BookingInfoBean {
@@ -11,6 +16,22 @@ public class BookingInfoBean {
     private String timeSlot;
 
     private String name;
+
+    public BookingInfoBean(TextField nameEntry, TextField numberOfClientsEntry, DatePicker dateEntry, ChoiceBox<String> timeSlotEntry) {
+        try {
+            Integer.parseInt(numberOfClientsEntry.getText());
+        }
+        catch (NumberFormatException e){
+            System.out.println("ERRORE");
+            return;
+        }
+
+        this.setName(nameEntry.getText());
+        this.setNumberOfClients(numberOfClientsEntry.getText());
+        this.setDate(dateEntry.getValue());
+        this.setTimeSlot(timeSlotEntry.getValue());
+
+    }
 
     public String getNumberOfClients() {
         return numberOfClients;
@@ -43,4 +64,7 @@ public class BookingInfoBean {
     public void setName(String name) {
         this.name = name;
     }
+
+
+
 }

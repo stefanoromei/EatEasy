@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import logic.bean.BookingInfoBean;
 import logic.control.BookATableControl;
+import logic.model.entity.BookingInfo;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,14 +35,10 @@ public class BookATableGIController implements Initializable{
 
     public void confirmBooking(ActionEvent actionEvent) {
 
-        //BookATableControl booking = new BookATableControl();
-        BookingInfoBean bookingInfoBean = new BookingInfoBean();
+        BookATableControl booking = new BookATableControl();
+        BookingInfoBean bookingInfoBean = new BookingInfoBean(nameEntry, numberOfClientsEntry, dateEntry, timeSlotEntry);
 
-        bookingInfoBean.setName(nameEntry.getText());
-        bookingInfoBean.setNumberOfClients(numberOfClientsEntry.getText());
-        bookingInfoBean.setDate(dateEntry.getValue());
-        bookingInfoBean.setTimeSlot(timeSlotEntry.getValue());
-        //booking.checkForBooking(bookingInfo);
+        booking.checkForBooking(bookingInfoBean);
     }
 
 }
