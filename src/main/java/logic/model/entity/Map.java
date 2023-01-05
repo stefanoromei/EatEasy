@@ -1,5 +1,6 @@
 package logic.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
@@ -10,7 +11,15 @@ public class Map {
         return tables;
     }
 
-    public void setTableMap(List<Table> tables) {
+    public void setTables(List<Table> tables) {
         this.tables = tables;
     }
+
+    public Map(){
+        this.tables = new ArrayList<Table>();
+        this.tables.add(new Table());
+    }
+
+
+
 }

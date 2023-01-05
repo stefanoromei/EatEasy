@@ -3,10 +3,13 @@ package logic.control;
 import logic.bean.BookingInfoBean;
 import logic.enumeration.TimeSlot;
 import logic.model.entity.BookingInfo;
+import logic.model.entity.Map;
+import logic.model.entity.Table;
 
 public class BookATableControl {
 
-    public void checkForBooking(BookingInfoBean bookingInfoBean) {
+    public boolean checkForBooking(BookingInfoBean bookingInfoBean) {
+
         BookingInfo bookingInfo = new BookingInfo();
 
         bookingInfo.setName(bookingInfoBean.getName());
@@ -14,10 +17,12 @@ public class BookATableControl {
         bookingInfo.setNumberOfClients(Integer.parseInt(bookingInfoBean.getNumberOfClients()));
         bookingInfo.setTimeSlot(TimeSlot.valueOf(bookingInfoBean.getTimeSlot()));
 
-        System.out.println(bookingInfo.getName());
-        System.out.println(bookingInfo.getDate());
-        System.out.println(bookingInfo.getTimeSlot());
-        System.out.println(bookingInfo.getNumberOfClients());
-
+        Map map = new Map();
+        for (Table table : map.getTables()){
+            if (table.canBeBooked(bookingInfo.getNumberOfClients(), bookingInfo.getDate(), bookingInfo.getTimeSlot())){
+                return table.book(bookingInfo);
+            }
+        }
+        return false;
     }
 }
