@@ -20,7 +20,7 @@ public class BookATableControl {
 
         Map map = new Map();
         for (Table table : map.getTables()){
-            var tableId = table.canBeBooked(bookingInfo.getNumberOfClients(), bookingInfo.getDate(), bookingInfo.getTimeSlot());
+            var tableId = table.canBeBooked(bookingInfo.getNumberOfClients(), bookingInfo.getDate(), bookingInfo.getTimeSlot(), table.getTableId());
             if (tableId > 0){
                 return table.book(bookingInfo, tableId);
             }
