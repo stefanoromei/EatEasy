@@ -3,6 +3,7 @@ package logic.model.entity;
 import logic.enumeration.TimeSlot;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Locale;
 
 public class Table {
@@ -43,7 +44,7 @@ public class Table {
         this.maxClients = maxClients;
     }
 
-    public boolean canBeBooked(int numberOfClients, LocalDate date, TimeSlot timeSlot){
+    public boolean canBeBooked(int numberOfClients, Date date, Enum<TimeSlot> timeSlot){
         return true;
     }
 

@@ -2,15 +2,15 @@ package logic.model.entity;
 
 import logic.enumeration.TimeSlot;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class BookingInfo {
 
     private int numberOfClients;
 
-    private LocalDate date;
+    private Date date;
 
-    private TimeSlot timeSlot;
+    private Enum<TimeSlot> timeSlot;
 
     private String name;
 
@@ -22,15 +22,15 @@ public class BookingInfo {
         this.numberOfClients = numberOfClients;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public TimeSlot getTimeSlot() {
+    public Enum<TimeSlot> getTimeSlot() {
         return timeSlot;
     }
 

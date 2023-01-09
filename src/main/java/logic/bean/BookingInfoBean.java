@@ -3,15 +3,15 @@ package logic.bean;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import logic.model.entity.BookingInfo;
 
-import java.time.LocalDate;
+import java.sql.Date;
+
 
 public class BookingInfoBean {
 
     private String numberOfClients;
 
-    private LocalDate date;
+    private Date date;
 
     private String timeSlot;
 
@@ -22,13 +22,13 @@ public class BookingInfoBean {
             Integer.parseInt(numberOfClientsEntry.getText());
         }
         catch (NumberFormatException e){
-            System.out.println("ERRORE");
+            System.out.println("ERROR");
             return;
         }
 
         this.setName(nameEntry.getText());
         this.setNumberOfClients(numberOfClientsEntry.getText());
-        this.setDate(dateEntry.getValue());
+        this.setDate(Date.valueOf(dateEntry.getValue()));
         this.setTimeSlot(timeSlotEntry.getValue());
 
     }
@@ -41,11 +41,11 @@ public class BookingInfoBean {
         this.numberOfClients = numberOfClients;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
