@@ -10,7 +10,6 @@ import java.sql.SQLException;
 public class BookingDAO {
     public boolean addBook(BookingInfo bookingInfo, int tableId) throws DatabaseException {
         var conn = Database.getConnection();
-        var id = 0;
         try(CallableStatement stmt = conn.prepareCall("call add_booking(?, ?, ?, ?, ?);");){
 
             stmt.setString(1, bookingInfo.getName());
@@ -18,8 +17,6 @@ public class BookingDAO {
             stmt.setDate(3, bookingInfo.getDate());
             stmt.setString(4, String.valueOf(bookingInfo.getTimeSlot()));
             stmt.setInt(5, tableId);
-
-            boolean haveResult = stmt.execute();
 
         }
         catch(SQLException e) {

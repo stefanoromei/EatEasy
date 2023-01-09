@@ -20,6 +20,10 @@ public class Database {
 
     private static Users user;
 
+    private Database(){
+
+    }
+
     public static Connection getConnection() throws DatabaseException {
         if(conn == null) {
             conn = connect(NOT_LOGGED);
@@ -46,7 +50,6 @@ public class Database {
             Class.forName(conf[1]);
             conn = DriverManager.getConnection(conf[0], conf[2], conf[3]);
         } catch (ClassNotFoundException | SQLException | FileNotFoundException e) {
-            //System.out.println(e);
             throw new DatabaseException();
         }
             return conn;
