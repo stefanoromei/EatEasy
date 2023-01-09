@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class BookingDAO {
     public boolean addBook(BookingInfo bookingInfo, int tableId) throws DatabaseException {
         var conn = Database.getConnection();
-        try(CallableStatement stmt = conn.prepareCall("call add_booking(?, ?, ?, ?, ?);");){
+        try(CallableStatement stmt = conn.prepareCall("call add_booking(?, ?, ?, ?, ?);")){
 
             stmt.setString(1, bookingInfo.getName());
             stmt.setInt(2, bookingInfo.getNumberOfClients());
