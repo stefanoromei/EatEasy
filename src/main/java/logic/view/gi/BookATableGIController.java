@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import logic.bean.BookingInfoBean;
 import logic.control.BookATableControl;
+import logic.exception.DatabaseException;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,12 +44,12 @@ public class BookATableGIController implements Initializable{
     }
 
 
-    public void confirmBooking(ActionEvent actionEvent) {
+    public void confirmBooking(ActionEvent actionEvent) throws DatabaseException {
 
-        BookATableControl booking = new BookATableControl();
+        BookATableControl bookATableControl = new BookATableControl();
         BookingInfoBean bookingInfoBean = new BookingInfoBean(nameEntry, numberOfClientsEntry, dateEntry, timeSlotEntry);
 
-        if (booking.checkForBooking(bookingInfoBean)){
+        if (bookATableControl.checkForBooking(bookingInfoBean)){
             this.displayResponse(responseLabel, "Book OK");
         }
         else{
@@ -57,6 +58,6 @@ public class BookATableGIController implements Initializable{
         confirmButton.setDisable(true);
     }
 
-    public void goBack(ActionEvent actionEvent) {
+    public void goHome(ActionEvent actionEvent) {
     }
 }

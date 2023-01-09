@@ -7,8 +7,8 @@ import logic.model.entity.BookingInfo;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 
-public class TableDAO {
-    public int bookTable(BookingInfo bookingInfo, int tableId) throws DatabaseException {
+public class BookingDAO {
+    public boolean addBook(BookingInfo bookingInfo, int tableId) throws DatabaseException {
         var conn = Database.getConnection();
         var id = 0;
         try(CallableStatement stmt = conn.prepareCall("call add_booking(?, ?, ?, ?, ?);");){
@@ -20,12 +20,12 @@ public class TableDAO {
             stmt.setInt(5, tableId);
 
             boolean haveResult = stmt.execute();
-            id = stmt.getInt(1);
+
         }
         catch(SQLException e) {
             throw new DatabaseException();
         }
-        return id;
+        return true;
 
     }
 }

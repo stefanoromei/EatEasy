@@ -1,5 +1,6 @@
 package logic.model;
 
+import logic.Main;
 import logic.exception.DatabaseException;
 
 import java.io.File;
@@ -27,18 +28,13 @@ public class Database {
     }
 
     private static Connection connect(Users user) throws DatabaseException {
-        URL url = Database.class.getResource("/EatEasyDB_conf.txt");
+        URL url = Main.class.getResource("/EatEasyDB_conf.txt");
         File fileConfig = new File(url.getPath());
         try (var myReader = new Scanner(fileConfig)) {
-            switch (user) {
-                case NOT_LOGGED:
-                    Database.user = NOT_LOGGED;
-                    break;
-                case USER:
-                    Database.user = USER;
-                    break;
-                default:
-                    Database.user = NOT_LOGGED;
+            if (user == USER) {
+                Database.user = USER;
+            } else {
+                Database.user = NOT_LOGGED;
             }
             var conf = new String[4];
             var i = 0;
@@ -50,6 +46,7 @@ public class Database {
             Class.forName(conf[1]);
             conn = DriverManager.getConnection(conf[0], conf[2], conf[3]);
         } catch (ClassNotFoundException | SQLException | FileNotFoundException e) {
+            //System.out.println(e);
             throw new DatabaseException();
         }
             return conn;
