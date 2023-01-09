@@ -16,7 +16,7 @@ public class Map {
     }
 
     public Map(){
-        this.tables = new ArrayList<Table>();
+        this.tables = new ArrayList<>();
         this.tables.add(new Table());
     }
 
