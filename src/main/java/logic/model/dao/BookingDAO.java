@@ -18,6 +18,8 @@ public class BookingDAO {
             stmt.setString(4, String.valueOf(bookingInfo.getTimeSlot()));
             stmt.setInt(5, tableId);
 
+            stmt.execute();
+
         }
         catch(SQLException e) {
             throw new DatabaseException();

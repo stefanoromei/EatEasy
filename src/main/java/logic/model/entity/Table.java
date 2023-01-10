@@ -15,10 +15,10 @@ public class Table {
 
     private int maxClients;
 
-    public Table() {
-        this.tableId = 1;
-        this.minClients = 2;
-        this.maxClients = 4;
+    public Table(int tableId, int minClients, int maxClients) {
+        this.tableId = tableId;
+        this.minClients = minClients;
+        this.maxClients = maxClients;
     }
 
     public int getTableId() {
@@ -47,6 +47,7 @@ public class Table {
 
     public int canBeBooked(int numberOfClients, Date date, Enum<TimeSlot> timeSlot, int tableId) throws DatabaseException {
         TableDAO tableDAO = new TableDAO();
+
         if (tableDAO.isFree(numberOfClients, (java.sql.Date) date, timeSlot, tableId) && this.isCompliant(numberOfClients)){
             return tableId;
         }

@@ -21,7 +21,6 @@ public class TableDAO {
             stmt.setString(3, String.valueOf(timeSlot));
             stmt.setInt(4, tableId);
 
-
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -31,5 +30,42 @@ public class TableDAO {
         } catch (SQLException e) {
             throw new DatabaseException();
         }
+    }
+
+    public int add_table(int minClients, int maxClients) throws DatabaseException {
+        var conn = Database.getConnection();
+        int tableId = 0;
+        try (CallableStatement stmt = conn.prepareCall("call add_table(?, ?, ?);")) {
+
+            stmt.setInt(1, minClients);
+            stmt.setInt(2, maxClients);
+
+            boolean result = stmt.execute();
+            if(result){
+                tableId = stmt.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException();
+        }
+        return tableId;
+    }
+
+    public int delete_table(int tableId) throws DatabaseException {
+        var conn = Database.getConnection();
+        int id = 0;
+        try (CallableStatement stmt = conn.prepareCall("call delete_table(?);")) {
+
+            stmt.setInt(1, tableId);
+
+            boolean result = stmt.execute();
+            if(result){
+                id = stmt.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException();
+        }
+        return id;
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import logic.bean.BookingInfoBean;
 import logic.control.BookATableControl;
 import logic.exception.DatabaseException;
+import logic.model.dao.TableDAO;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,16 +47,19 @@ public class BookATableGIController implements Initializable{
 
     public void confirmBooking(ActionEvent actionEvent) throws DatabaseException {
 
-        BookATableControl bookATableControl = new BookATableControl();
-        BookingInfoBean bookingInfoBean = new BookingInfoBean(nameEntry, numberOfClientsEntry, dateEntry, timeSlotEntry);
+        //BookATableControl bookATableControl = new BookATableControl();
+        //BookingInfoBean bookingInfoBean = new BookingInfoBean(nameEntry, numberOfClientsEntry, dateEntry, timeSlotEntry);
 
-        if (bookATableControl.checkForBooking(bookingInfoBean)){
-            this.displayResponse(responseLabel, "Book OK");
-        }
-        else{
-        this.displayResponse(responseLabel, "Book NO");
-        }
-        confirmButton.setDisable(true);
+        //if (bookATableControl.checkForBooking(bookingInfoBean)){
+        //    this.displayResponse(responseLabel, "Book OK");
+        //}
+        //else{
+        //this.displayResponse(responseLabel, "Book ERROR");
+        //}
+        //confirmButton.setDisable(true);
+        TableDAO tableDAO = new TableDAO();
+        tableDAO.delete_table(5);
+
     }
 
     public void goHome(ActionEvent actionEvent) {
