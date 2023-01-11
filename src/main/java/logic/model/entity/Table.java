@@ -45,20 +45,20 @@ public class Table {
         this.maxClients = maxClients;
     }
 
-    public int canBeBooked(int numberOfClients, Date date, Enum<TimeSlot> timeSlot, int tableId) throws DatabaseException {
+    public boolean canBeBooked(int numberOfClients, Date date, Enum<TimeSlot> timeSlot, int tableId) throws DatabaseException {
         TableDAO tableDAO = new TableDAO();
 
         if (tableDAO.isFree(numberOfClients, (java.sql.Date) date, timeSlot, tableId) && this.isCompliant(numberOfClients)){
-            return tableId;
+            return true;
         }
-        return 0;
+        return false;
     }
 
     private boolean isCompliant(int numberOfClients) {
         return (numberOfClients >= this.getMinClients() && numberOfClients <= this.getMaxClients());
     }
 
-    public boolean book(BookingInfo bookingInfo, int tableId) throws DatabaseException {
+    public int book(BookingInfo bookingInfo, int tableId) throws DatabaseException {
         BookingDAO bookingDAO = new BookingDAO();
         return bookingDAO.addBook(bookingInfo, tableId);
     }

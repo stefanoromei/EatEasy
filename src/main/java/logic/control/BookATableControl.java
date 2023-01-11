@@ -12,7 +12,6 @@ public class BookATableControl {
 
     public int checkForBooking(BookingInfoBean bookingInfoBean) throws DatabaseException {
 
-        int res = 0;
         BookingInfo bookingInfo = new BookingInfo();
 
         bookingInfo.setName(bookingInfoBean.getName());
@@ -22,13 +21,11 @@ public class BookATableControl {
 
         Map map = new Map();
         for (Table table : map.getTables()){
-            var tableId = table.canBeBooked(bookingInfo.getNumberOfClients(), bookingInfo.getDate(), bookingInfo.getTimeSlot(), table.getTableId());
-            if (tableId > 0){
+            if (table.canBeBooked(bookingInfo.getNumberOfClients(), bookingInfo.getDate(), bookingInfo.getTimeSlot(), table.getTableId())){
                 BookingDAO bookingDAO = new BookingDAO();
-                bookingDAO.addBook(bookingInfo, tableId);
-                res = tableId;
+                return bookingDAO.addBook(bookingInfo, table.getTableId());
             }
         }
-        return res;
+        return 0;
     }
 }

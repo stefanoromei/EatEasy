@@ -13,7 +13,7 @@ public class TableDAO {
 
     public boolean isFree(int numberOfClients, Date date, Enum<TimeSlot> timeSlot, int tableId) throws DatabaseException {
         var conn = Database.getConnection();
-        var count = 0;
+        int count = 1;
         try (CallableStatement stmt = conn.prepareCall("call is_free(?, ?, ?, ?);")) {
 
             stmt.setInt(1, numberOfClients);
@@ -26,10 +26,11 @@ public class TableDAO {
             if (rs.next()) {
                 count = rs.getInt(1);
             }
-            return count == 0;
+
         } catch (SQLException e) {
             throw new DatabaseException();
         }
+        return count == 0;
     }
 
     public int add_table(int minClients, int maxClients) throws DatabaseException {

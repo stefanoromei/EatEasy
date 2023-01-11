@@ -9,10 +9,11 @@ import javafx.scene.layout.AnchorPane;
 import logic.bean.BookingInfoBean;
 import logic.control.BookATableControl;
 import logic.exception.DatabaseException;
-import logic.model.dao.TableDAO;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class BookATableGIController implements Initializable{
@@ -61,7 +62,7 @@ public class BookATableGIController implements Initializable{
         } catch (NumberFormatException e) {
             this.displayResponse(responseLabel, "Number of clients must be a number.");
         } catch (NullPointerException e){
-            this.displayResponse(responseLabel, "Insert a valid date.");
+            this.displayResponse(responseLabel, "Please insert a valid date.");
         }
 
         int bookingId = bookATableControl.checkForBooking(bookingInfoBean);

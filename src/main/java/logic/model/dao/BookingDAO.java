@@ -5,12 +5,13 @@ import logic.model.Database;
 import logic.model.entity.BookingInfo;
 
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BookingDAO {
-    public boolean addBook(BookingInfo bookingInfo, int tableId) throws DatabaseException {
+    public int addBook(BookingInfo bookingInfo, int tableId) throws DatabaseException {
         var conn = Database.getConnection();
-        try(CallableStatement stmt = conn.prepareCall("call add_booking(?, ?, ?, ?, ?);")){
+        try(CallableStatement stmt = conn.prepareCall("call add_booking(?, ?, ?, ?, ?, ?);")){
 
             stmt.setString(1, bookingInfo.getName());
             stmt.setInt(2, bookingInfo.getNumberOfClients());
@@ -18,13 +19,17 @@ public class BookingDAO {
             stmt.setString(4, String.valueOf(bookingInfo.getTimeSlot()));
             stmt.setInt(5, tableId);
 
-            stmt.execute();
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
 
         }
         catch(SQLException e) {
             throw new DatabaseException();
         }
-        return true;
+        return 0;
 
     }
 }
