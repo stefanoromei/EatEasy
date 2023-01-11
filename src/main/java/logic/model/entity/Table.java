@@ -48,10 +48,7 @@ public class Table {
     public boolean canBeBooked(int numberOfClients, Date date, Enum<TimeSlot> timeSlot, int tableId) throws DatabaseException {
         TableDAO tableDAO = new TableDAO();
 
-        if (tableDAO.isFree(numberOfClients, (java.sql.Date) date, timeSlot, tableId) && this.isCompliant(numberOfClients)){
-            return true;
-        }
-        return false;
+        return tableDAO.isFree(numberOfClients, (java.sql.Date) date, timeSlot, tableId) && this.isCompliant(numberOfClients);
     }
 
     private boolean isCompliant(int numberOfClients) {

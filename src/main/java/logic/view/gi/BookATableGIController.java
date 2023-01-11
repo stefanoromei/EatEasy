@@ -67,7 +67,7 @@ public class BookATableGIController implements Initializable{
 
         int bookingId = bookATableControl.checkForBooking(bookingInfoBean);
         if (bookingId > 0) {
-            this.displayResponse(responseLabel, "Booking successfully made ,your booking identifier is "+ bookingId);
+            this.displayResponse(responseLabel, "Booking successfully made, your booking identifier is "+ bookingId);
         } else {
             this.displayResponse(responseLabel, "Sorry, there is no availability for the number of clients on the selected dates");
         }

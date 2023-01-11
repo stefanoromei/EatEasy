@@ -33,7 +33,7 @@ public class TableDAO {
         return count == 0;
     }
 
-    public int add_table(int minClients, int maxClients) throws DatabaseException {
+    public int addTable(int minClients, int maxClients) throws DatabaseException {
         var conn = Database.getConnection();
         int tableId = 0;
         try (CallableStatement stmt = conn.prepareCall("call add_table(?, ?, ?);")) {
@@ -52,7 +52,7 @@ public class TableDAO {
         return tableId;
     }
 
-    public int delete_table(int tableId) throws DatabaseException {
+    public int deleteTable(int tableId) throws DatabaseException {
         var conn = Database.getConnection();
         int id = 0;
         try (CallableStatement stmt = conn.prepareCall("call delete_table(?);")) {
