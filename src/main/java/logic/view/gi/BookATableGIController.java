@@ -3,17 +3,12 @@ package logic.view.gi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import logic.bean.BookingInfoBean;
 import logic.control.BookATableControl;
 import logic.exception.DatabaseException;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class BookATableGIController implements Initializable{
