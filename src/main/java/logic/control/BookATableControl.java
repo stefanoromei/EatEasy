@@ -10,13 +10,14 @@ import logic.model.entity.Table;
 
 public class BookATableControl {
 
-    public boolean checkForBooking(BookingInfoBean bookingInfoBean) throws DatabaseException {
+    public int checkForBooking(BookingInfoBean bookingInfoBean) throws DatabaseException {
 
+        int res = 0;
         BookingInfo bookingInfo = new BookingInfo();
 
         bookingInfo.setName(bookingInfoBean.getName());
         bookingInfo.setDate(bookingInfoBean.getDate());
-        bookingInfo.setNumberOfClients(Integer.parseInt(bookingInfoBean.getNumberOfClients()));
+        bookingInfo.setNumberOfClients(bookingInfoBean.getNumberOfClients());
         bookingInfo.setTimeSlot(TimeSlot.valueOf(bookingInfoBean.getTimeSlot()));
 
         Map map = new Map();
@@ -24,9 +25,10 @@ public class BookATableControl {
             var tableId = table.canBeBooked(bookingInfo.getNumberOfClients(), bookingInfo.getDate(), bookingInfo.getTimeSlot(), table.getTableId());
             if (tableId > 0){
                 BookingDAO bookingDAO = new BookingDAO();
-                return bookingDAO.addBook(bookingInfo, tableId);
+                bookingDAO.addBook(bookingInfo, tableId);
+                res = tableId;
             }
         }
-        return false;
+        return res;
     }
 }

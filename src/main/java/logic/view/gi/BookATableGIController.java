@@ -3,12 +3,15 @@ package logic.view.gi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import logic.bean.BookingInfoBean;
 import logic.control.BookATableControl;
 import logic.exception.DatabaseException;
 import logic.model.dao.TableDAO;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,28 +40,38 @@ public class BookATableGIController implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
+
         timeSlotEntry.getItems().addAll(timeSlot);
+        timeSlotEntry.getSelectionModel().selectFirst();
+
     }
 
     public void displayResponse(Label label, String response){
+
         label.setText(response);
     }
 
 
     public void confirmBooking(ActionEvent actionEvent) throws DatabaseException {
 
-        //BookATableControl bookATableControl = new BookATableControl();
-        //BookingInfoBean bookingInfoBean = new BookingInfoBean(nameEntry, numberOfClientsEntry, dateEntry, timeSlotEntry);
+        BookATableControl bookATableControl = new BookATableControl();
+        BookingInfoBean bookingInfoBean = null;
+        try {
+            bookingInfoBean = new BookingInfoBean(nameEntry, numberOfClientsEntry, dateEntry, timeSlotEntry);
+        } catch (NumberFormatException e) {
+            this.displayResponse(responseLabel, "Number of clients must be a number.");
+        } catch (NullPointerException e){
+            this.displayResponse(responseLabel, "Insert a valid date.");
+        }
 
-        //if (bookATableControl.checkForBooking(bookingInfoBean)){
-        //    this.displayResponse(responseLabel, "Book OK");
-        //}
-        //else{
-        //this.displayResponse(responseLabel, "Book ERROR");
-        //}
-        //confirmButton.setDisable(true);
-        TableDAO tableDAO = new TableDAO();
-        tableDAO.delete_table(5);
+        int bookingId = bookATableControl.checkForBooking(bookingInfoBean);
+        if (bookingId > 0) {
+            this.displayResponse(responseLabel, "Booking successfully made ,your booking identifier is "+ bookingId);
+        } else {
+            this.displayResponse(responseLabel, "Sorry, there is no availability for the number of clients on the selected dates");
+        }
+        confirmButton.setDisable(true);
+
 
     }
 

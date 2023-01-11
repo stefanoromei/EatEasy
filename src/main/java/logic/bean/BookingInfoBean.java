@@ -4,12 +4,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+
 import java.sql.Date;
 
 
 public class BookingInfoBean {
 
-    private String numberOfClients;
+    private int numberOfClients;
 
     private Date date;
 
@@ -17,27 +18,21 @@ public class BookingInfoBean {
 
     private String name;
 
-    public BookingInfoBean(TextField nameEntry, TextField numberOfClientsEntry, DatePicker dateEntry, ChoiceBox<String> timeSlotEntry) {
-        try {
-            Integer.parseInt(numberOfClientsEntry.getText());
-        }
-        catch (NumberFormatException e){
-            System.out.println("ERROR");
-            return;
-        }
+    public BookingInfoBean(TextField nameEntry, TextField numberOfClientsEntry, DatePicker dateEntry, ChoiceBox<String> timeSlotEntry){
+
 
         this.setName(nameEntry.getText());
-        this.setNumberOfClients(numberOfClientsEntry.getText());
+        this.setNumberOfClients(Integer.parseInt(numberOfClientsEntry.getText()));
         this.setDate(Date.valueOf(dateEntry.getValue()));
         this.setTimeSlot(timeSlotEntry.getValue());
 
     }
 
-    public String getNumberOfClients() {
+    public int getNumberOfClients() {
         return numberOfClients;
     }
 
-    public void setNumberOfClients(String numberOfClients) {
+    public void setNumberOfClients(int numberOfClients) {
         this.numberOfClients = numberOfClients;
     }
 
