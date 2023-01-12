@@ -3,7 +3,6 @@ package logic.control;
 import logic.bean.BookingInfoBean;
 import logic.enumeration.TimeSlot;
 import logic.exception.DatabaseException;
-import logic.model.dao.BookingDAO;
 import logic.model.entity.BookingInfo;
 import logic.model.entity.Map;
 import logic.model.entity.Table;
@@ -22,8 +21,7 @@ public class BookATableControl {
         Map map = new Map();
         for (Table table : map.getTables()){
             if (table.canBeBooked(bookingInfo.getNumberOfClients(), bookingInfo.getDate(), bookingInfo.getTimeSlot(), table.getTableId())){
-                BookingDAO bookingDAO = new BookingDAO();
-                return bookingDAO.addBook(bookingInfo, table.getTableId());
+                return bookingInfo.addBook(table.getTableId());
             }
         }
         return 0;

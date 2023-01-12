@@ -43,7 +43,6 @@ public class BookATableGIController implements Initializable{
     }
 
     public void displayResponse(Label label, String response){
-
         label.setText(response);
     }
 
@@ -52,6 +51,7 @@ public class BookATableGIController implements Initializable{
 
         BookATableControl bookATableControl = new BookATableControl();
         BookingInfoBean bookingInfoBean = null;
+
         try {
             bookingInfoBean = new BookingInfoBean(nameEntry, numberOfClientsEntry, dateEntry, timeSlotEntry);
         } catch (NumberFormatException e) {

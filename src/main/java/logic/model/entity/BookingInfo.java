@@ -1,6 +1,8 @@
 package logic.model.entity;
 
 import logic.enumeration.TimeSlot;
+import logic.exception.DatabaseException;
+import logic.model.dao.BookingDAO;
 
 import java.sql.Date;
 
@@ -44,5 +46,10 @@ public class BookingInfo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int addBook(int tableId) throws DatabaseException {
+        BookingDAO bookingDAO = new BookingDAO();
+        return bookingDAO.addBook(this,  tableId);
     }
 }

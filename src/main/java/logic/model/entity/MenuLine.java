@@ -10,6 +10,12 @@ public class MenuLine {
 
     private float price;
 
+    public MenuLine(String description, MenuSection menuSection, float price) {
+        this.description = description;
+        this.menuSection = menuSection;
+        this.price = price;
+    }
+
     public String getDescription() {
         return description;
     }
